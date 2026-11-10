@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GGGI Green Career Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gggi: {
+                            50: '#e6f8f5',
+                            100: '#c2f0e8',
+                            500: '#00bfa5',
+                            600: '#00a896',
+                            700: '#00897b',
+                            800: '#00695c',
+                            900: '#004d40',
+                        },
+                        slate: {
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-gggi-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl font-extrabold tracking-wider text-slate-900">GGGI</span>
+                <span class="text-xs font-bold tracking-widest text-gggi-700 uppercase bg-gggi-50 px-2.5 py-1 rounded-full border border-gggi-100">Career Assessment</span>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#welcome" class="text-sm font-semibold text-slate-600 hover:text-gggi-600 transition-colors">Home</a>
+                <a href="#explorer" class="text-sm font-semibold text-slate-600 hover:text-gggi-600 transition-colors">Green Roles</a>
+                <a href="#about" class="text-sm font-semibold text-slate-600 hover:text-gggi-600 transition-colors">GGGI Mission</a>
+            </nav>
+            <div>
+                <button onclick="startAssessment()" class="px-5 py-2.5 text-sm font-bold text-white bg-gggi-600 hover:bg-gggi-700 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform active:scale-95">
+                    Start Test
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- SECTION 1: WELCOME HERO -->
+        <section id="welcome" class="py-12 md:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-gggi-50 border border-gggi-100 rounded-full px-4 py-1.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-gggi-500 animate-pulse"></span>
+                        <span class="text-xs font-semibold text-gggi-800 uppercase tracking-wider">GGGI Alignment Strategy</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15]">
+                        Discover Your Ideal <span class="text-transparent bg-clip-text bg-gradient-to-r from-gggi-600 to-teal-500">Green Job</span> Profile
+                    </h1>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Supporting GGGI's mission for a low-carbon, resilient world with strong, inclusive, and sustainable green growth. Assess your strengths across four core operational pathways: <strong>Researcher</strong>, <strong>Project Manager</strong>, <strong>Investment Manager</strong>, or <strong>Policy Analyst</strong>.
+                    </p>
+                    
+                    <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button onclick="startAssessment()" class="px-8 py-4 text-base font-bold text-white bg-gggi-600 hover:bg-gggi-700 rounded-2xl shadow-xl hover:shadow-gggi-500/20 transition-all duration-200 transform hover:-translate-y-0.5 text-center">
+                            Begin Assessment (20 Questions)
+                        </button>
+                        <a href="#explorer" class="px-8 py-4 text-base font-semibold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 rounded-2xl transition-all duration-200 text-center">
+                            Explore Roles
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="glass-panel p-8 rounded-3xl shadow-xl space-y-6 border border-slate-200/80">
+                        <h3 class="text-xl font-bold text-slate-900 border-b border-slate-100 pb-4">Assessment Pathways</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center font-bold text-base flex-shrink-0">1</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900">Researcher</h4>
+                                    <p class="text-xs text-slate-500">Data modeling, climate science, LCA, and technological innovation.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-base flex-shrink-0">2</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900">Project Manager</h4>
+                                    <p class="text-xs text-slate-500">Organizing team workflows, practical actions, and sustainable field execution.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-base flex-shrink-0">3</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900">Investment Manager</h4>
+                                    <p class="text-xs text-slate-500">Green finance, climate risk assessment, bankable projects, and green investments.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-base flex-shrink-0">4</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900">Policy Analyst</h4>
+                                    <p class="text-xs text-slate-500">National green growth strategies, regulatory frameworks, and climate policy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ASSESSMENT INTERACTION -->
+        <section id="quiz" class="hidden py-12 max-w-4xl mx-auto">
+            <div class="glass-panel p-8 sm:p-10 rounded-3xl shadow-2xl relative">
+                
+                <!-- Progress Header -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-2">
+                        <span id="progress-text" class="text-xs font-bold text-gggi-700 uppercase tracking-wider">Question 1 of 20</span>
+                        <span id="progress-percent" class="text-xs font-bold text-slate-500">5% Completed</span>
+                    </div>
+                    <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="bg-gggi-600 h-full rounded-full transition-all duration-300" style="width: 5%"></div>
+                    </div>
+                </div>
+
+                <!-- Question Box -->
+                <div class="space-y-6">
+                    <div class="inline-block px-3 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold uppercase tracking-wider" id="question-category">
+                        Category Tag
+                    </div>
+                    <h2 id="question-text" class="text-2xl sm:text-3xl font-bold text-slate-900 leading-snug">
+                        Question loading...
+                    </h2>
+
+                    <!-- Likert Scale Options -->
+                    <div class="pt-6 space-y-3" id="likert-container">
+                        <button onclick="selectAnswer(5)" class="w-full p-4 text-left border-2 border-slate-200 hover:border-gggi-500 hover:bg-gggi-50/50 rounded-2xl transition-all flex items-center justify-between group">
+                            <span class="font-semibold text-slate-800 group-hover:text-gggi-900">Strongly Agree</span>
+                            <span class="w-7 h-7 rounded-full border border-slate-300 group-hover:border-gggi-600 group-hover:bg-gggi-600 text-white flex items-center justify-center font-bold text-xs">5</span>
+                        </button>
+                        <button onclick="selectAnswer(4)" class="w-full p-4 text-left border-2 border-slate-200 hover:border-gggi-500 hover:bg-gggi-50/50 rounded-2xl transition-all flex items-center justify-between group">
+                            <span class="font-semibold text-slate-800 group-hover:text-gggi-900">Agree</span>
+                            <span class="w-7 h-7 rounded-full border border-slate-300 group-hover:border-gggi-600 group-hover:bg-gggi-600 text-white flex items-center justify-center font-bold text-xs">4</span>
+                        </button>
+                        <button onclick="selectAnswer(3)" class="w-full p-4 text-left border-2 border-slate-200 hover:border-gggi-500 hover:bg-gggi-50/50 rounded-2xl transition-all flex items-center justify-between group">
+                            <span class="font-semibold text-slate-800 group-hover:text-gggi-900">Neutral</span>
+                            <span class="w-7 h-7 rounded-full border border-slate-300 group-hover:border-gggi-600 group-hover:bg-gggi-600 text-white flex items-center justify-center font-bold text-xs">3</span>
+                        </button>
+                        <button onclick="selectAnswer(2)" class="w-full p-4 text-left border-2 border-slate-200 hover:border-gggi-500 hover:bg-gggi-50/50 rounded-2xl transition-all flex items-center justify-between group">
+                            <span class="font-semibold text-slate-800 group-hover:text-gggi-900">Disagree</span>
+                            <span class="w-7 h-7 rounded-full border border-slate-300 group-hover:border-gggi-600 group-hover:bg-gggi-600 text-white flex items-center justify-center font-bold text-xs">2</span>
+                        </button>
+                        <button onclick="selectAnswer(1)" class="w-full p-4 text-left border-2 border-slate-200 hover:border-gggi-500 hover:bg-gggi-50/50 rounded-2xl transition-all flex items-center justify-between group">
+                            <span class="font-semibold text-slate-800 group-hover:text-gggi-900">Strongly Disagree</span>
+                            <span class="w-7 h-7 rounded-full border border-slate-300 group-hover:border-gggi-600 group-hover:bg-gggi-600 text-white flex items-center justify-center font-bold text-xs">1</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Navigation Back -->
+                <div class="mt-8 pt-4 border-t border-slate-100 flex justify-between">
+                    <button onclick="previousQuestion()" id="prev-btn" class="px-5 py-2 text-sm font-semibold text-slate-500 hover:text-slate-800 disabled:opacity-30" disabled>
+                        ← Previous
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: RESULTS DASHBOARD -->
+        <section id="results" class="hidden py-12 max-w-5xl mx-auto space-y-10">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl shadow-2xl border border-slate-200/80">
+                <div class="text-center max-w-2xl mx-auto space-y-3 mb-10">
+                    <span class="px-3 py-1 bg-gggi-50 text-gggi-700 border border-gggi-100 rounded-full text-xs font-bold uppercase tracking-wider">Assessment Profile Completed</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Your Perfect Green Role Match</h2>
+                    <p class="text-slate-600 text-base">Based on your choices, here is how your profile aligns with GGGI's four core operational domains.</p>
+                </div>
+
+                <!-- Results Highlights -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-10">
+                    <div class="p-6 bg-gradient-to-br from-gggi-500 to-gggi-700 text-white rounded-3xl shadow-xl space-y-4">
+                        <span class="text-xs font-bold uppercase tracking-widest text-gggi-100">Primary Match</span>
+                        <h3 id="primary-role-title" class="text-3xl font-black">Role Name</h3>
+                        <p id="primary-role-desc" class="text-sm leading-relaxed text-gggi-50">
+                            Role overview description will appear here.
+                        </p>
+                        <div class="pt-4 border-t border-white/20">
+                            <h4 class="text-xs font-bold uppercase text-gggi-100 mb-2">Key Strengths Highlight</h4>
+                            <ul id="primary-role-skills" class="text-xs space-y-1 list-disc list-inside text-white/90">
+                                <li>Skill point 1</li>
+                                <li>Skill point 2</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-white rounded-3xl border border-slate-200 shadow-sm flex items-center justify-center">
+                        <div class="w-full max-w-sm h-72">
+                            <canvas id="resultsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommended Career Profiles -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold text-slate-900">Recommended Pathways & Specialized Roles</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="recommended-roles-container">
+                        <!-- Dynamic Role Cards inserted via JS -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="pt-8 border-t border-slate-200 flex flex-wrap justify-between items-center gap-4">
+                    <button onclick="resetAssessment()" class="px-6 py-3 border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold rounded-xl text-sm transition-all">
+                        Retake Assessment
+                    </button>
+                    <a href="#explorer" class="px-6 py-3 bg-slate-900 text-white font-semibold rounded-xl text-sm hover:bg-slate-800 transition-all">
+                        Browse All 28 Roles
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: GREEN ROLES EXPLORER -->
+        <section id="explorer" class="py-16 space-y-8 border-t border-slate-200/80">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-3xl font-black text-slate-900">Green Roles Explorer</h2>
+                    <p class="text-slate-600 mt-1">Explore 28 specialized green positions categorized across GGGI's core work tracks.</p>
+                </div>
+                <div class="flex flex-wrap gap-2" id="filter-buttons">
+                    <button onclick="filterRoles('all')" class="role-filter-btn px-4 py-2 text-xs font-bold rounded-xl bg-gggi-600 text-white transition-all">All Roles</button>
+                    <button onclick="filterRoles('researcher')" class="role-filter-btn px-4 py-2 text-xs font-bold rounded-xl bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all">Researcher</button>
+                    <button onclick="filterRoles('project_manager')" class="role-filter-btn px-4 py-2 text-xs font-bold rounded-xl bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all">Project Manager</button>
+                    <button onclick="filterRoles('investment_manager')" class="role-filter-btn px-4 py-2 text-xs font-bold rounded-xl bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all">Investment Manager</button>
+                    <button onclick="filterRoles('policy_analyst')" class="role-filter-btn px-4 py-2 text-xs font-bold rounded-xl bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all">Policy Analyst</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="explorer-cards-container">
+                <!-- Expanded cards inserted dynamically by JavaScript -->
+            </div>
+        </section>
+
+        <!-- SECTION 5: GGGI MISSION ALIGNMENT -->
+        <section id="about" class="py-12 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-6">
+            <div class="max-w-3xl space-y-3">
+                <span class="text-xs font-bold text-gggi-700 uppercase tracking-wider">About GGGI & Career Alignment</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Transforming Economies Toward Green Growth</h2>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    The Global Green Growth Institute (GGGI) is a treaty-based international intergovernmental organization dedicated to supporting strong, inclusive, and sustainable economic growth in developing countries and emerging economies.
+                </p>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    By linking rigorous research, robust project delivery, innovative climate finance, and policy reform, professionals across these four tracks contribute directly to a low-carbon and climate-resilient future.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <div class="flex items-center justify-center space-x-2">
+                <span class="text-xl font-bold text-white tracking-wider">GGGI</span>
+                <span class="text-xs text-slate-500">| Global Green Growth Institute Assessment Model</span>
+            </div>
+            <p class="text-xs text-slate-500">Designed to guide career choices towards sustainable development and green growth outcomes.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 20 Questions using simple, non-native friendly language and revised text
+        const questions = [
+            // Researcher Track
+            { category: 'researcher', categoryName: 'Researcher Domain', text: 'I enjoy conducting GHG emission accounting and measuring environmental metrics accurately.' },
+            { category: 'researcher', categoryName: 'Researcher Domain', text: 'I am interested in testing new clean technologies and evaluating their environmental impact.' },
+            { category: 'researcher', categoryName: 'Researcher Domain', text: 'I like analyzing large environmental datasets to discover sustainable trends.' },
+            { category: 'researcher', categoryName: 'Researcher Domain', text: 'I prefer doing detailed scientific research to find solutions for climate change.' },
+            { category: 'researcher', categoryName: 'Researcher Domain', text: 'I enjoy creating data models to predict natural resource usage and climate risks.' },
+
+            // Project Manager Track
+            { category: 'project_manager', categoryName: 'Project Manager Domain', text: 'I am good at keeping complex team workflows organized, on schedule, and within budget.' },
+            { category: 'project_manager', categoryName: 'Project Manager Domain', text: 'I enjoy turning net-zero goals into practical actions.' },
+            { category: 'project_manager', categoryName: 'Project Manager Domain', text: 'Resolving daily logistical bottlenecks in green growth and sustainable development projects excites me.' },
+            { category: 'project_manager', categoryName: 'Project Manager Domain', text: 'I am good at coordinating different teams and stakeholders to complete sustainability projects.' },
+            { category: 'project_manager', categoryName: 'Project Manager Domain', text: 'I enjoy monitoring project progress and ensuring sustainable goals are met on time.' },
+
+            // Investment Manager Track
+            { category: 'investment_manager', categoryName: 'Investment Manager Domain', text: 'I am interested in how finance and investment can support green growth and accelerate climate action.' },
+            { category: 'investment_manager', categoryName: 'Investment Manager Domain', text: 'Assessing sustainability performance, climate risks, and green investment opportunities aligns with my strengths.' },
+            { category: 'investment_manager', categoryName: 'Investment Manager Domain', text: 'Quantifying return on investment (ROI) alongside environmental impacts of green investments motivates me.' },
+            { category: 'investment_manager', categoryName: 'Investment Manager Domain', text: 'I enjoy structuring bankable green projects that attract private sector capital.' },
+            { category: 'investment_manager', categoryName: 'Investment Manager Domain', text: 'I am excited by designing innovative climate finance tools like carbon credits and green bonds.' },
+
+            // Policy Analyst Track
+            { category: 'policy_analyst', categoryName: 'Policy Analyst Domain', text: 'I enjoy analyzing national strategies and policies that support green growth and climate action.' },
+            { category: 'policy_analyst', categoryName: 'Policy Analyst Domain', text: 'I focus on systemic top-down reform rather than micro-level individual projects.' },
+            { category: 'policy_analyst', categoryName: 'Policy Analyst Domain', text: 'I am effective at advocating for policies that promote green growth and sustainable development.' },
+            { category: 'policy_analyst', categoryName: 'Policy Analyst Domain', text: 'I enjoy evaluating international agreements like the Paris Agreement and NDCs.' },
+            { category: 'policy_analyst', categoryName: 'Policy Analyst Domain', text: 'I am interested in designing government regulations that encourage low-carbon economic development.' }
+        ];
+
+        // Detailed Role Profiles aligned with GGGI goals & updated names
+        const roleProfiles = {
+            researcher: {
+                title: 'Researcher',
+                desc: 'You thrive on evidence-based analysis, GHG emission accounting, data modeling, and developing technical innovations that underpin green growth strategies.',
+                skills: ['GHG Accounting & Data Analysis', 'Life-Cycle Assessment (LCA)', 'Climate Risk Modeling', 'Clean Tech R&D'],
+                roles: [
+                    { title: 'Green Growth Data Analyst', desc: 'Analyzes environmental and economic data to inform national green growth indicators.' },
+                    { title: 'GHG Accounting Specialist', desc: 'Measures carbon footprints and establishes greenhouse gas baselines.' },
+                    { title: 'Climate Impact Modeler', desc: 'Builds predictive models to assess climate risks and ecosystem resilience.' },
+                    { title: 'Clean Tech R&D Specialist', desc: 'Evaluates emerging clean technologies for scalability and efficiency.' },
+                    { title: 'Circular Economy Researcher', desc: 'Researches resource flows and waste reduction strategies in industrial sectors.' },
+                    { title: 'Bioeconomy Specialist', desc: 'Investigates sustainable land use, forestry, and bio-based economy models.' },
+                    { title: 'Renewable Energy Analyst', desc: 'Studies energy grid transition data and clean energy adoption potential.' }
+                ]
+            },
+            project_manager: {
+                title: 'Project Manager',
+                desc: 'You excel at turning net-zero goals into practical actions, organizing team workflows, and resolving logistical bottlenecks in sustainable development projects.',
+                skills: ['Sustainable Execution', 'Logistics & Workflow Optimization', 'Multilateral Stakeholder Management', 'Resource Budgeting'],
+                roles: [
+                    { title: 'Sustainable Development Project Officer', desc: 'Leads on-the-ground green growth initiatives and coordinates local partner teams.' },
+                    { title: 'Renewable Energy Deployment Manager', desc: 'Oversees the planning, logistics, and installation of clean energy projects.' },
+                    { title: 'Green Infrastructure Program Manager', desc: 'Manages eco-friendly urban and community infrastructure development.' },
+                    { title: 'Supply Chain Sustainability Manager', desc: 'Ensures ethical and low-carbon operations across global supply chains.' },
+                    { title: 'Climate Adaptation Operations Lead', desc: 'Coordinates disaster risk reduction and climate resilience infrastructure.' },
+                    { title: 'Waste Management Project Lead', desc: 'Implements municipal circular waste and recycling projects.' },
+                    { title: 'Ecosystem Restoration Manager', desc: 'Directs field teams in reforesting and restoring natural landscapes.' }
+                ]
+            },
+            investment_manager: {
+                title: 'Investment Manager',
+                desc: 'You understand how finance and investment support green growth. You specialize in assessing climate risks, green bonds, and structuring bankable projects.',
+                skills: ['Green Financial Structuring', 'Climate Risk Assessment', 'Bankable Project Preparation', 'ESG Valuation'],
+                roles: [
+                    { title: 'Green Finance Specialist', desc: 'Structures bankable green investments to attract private and public capital.' },
+                    { title: 'ESG Investment Analyst', desc: 'Evaluates corporate sustainability metrics and environmental risk factors.' },
+                    { title: 'Carbon Market Advisor', desc: 'Develops carbon offset projects and structures emissions trading deals.' },
+                    { title: 'Climate Fund Manager', desc: 'Manages portfolios dedicated to clean energy and climate resilience assets.' },
+                    { title: 'Blended Finance Structurer', desc: 'Combines donor grants and private capital for sustainable development.' },
+                    { title: 'Green Bond Specialist', desc: 'Issues and monitors debt instruments dedicated to environmental projects.' },
+                    { title: 'Sustainable Microfinance Officer', desc: 'Directs green loans and micro-investments to rural and vulnerable communities.' }
+                ]
+            },
+            policy_analyst: {
+                title: 'Policy Analyst',
+                desc: 'You focus on systemic top-down reform, analyzing national strategies, and advocating for policies that promote green growth and sustainable development.',
+                skills: ['Policy Framework Design', 'National Strategy Planning', 'Regulatory Analysis', 'Inter-governmental Advocacy'],
+                roles: [
+                    { title: 'Green Growth Policy Advisor', desc: 'Advises government ministries on integrating sustainability into national planning.' },
+                    { title: 'Climate Policy Analyst', desc: 'Evaluates Nationally Determined Contributions (NDCs) and net-zero targets.' },
+                    { title: 'Environmental Regulation Specialist', desc: 'Drafts policies for emissions trading, carbon pricing, and waste standards.' },
+                    { title: 'Multilateral Relations Officer', desc: 'Coordinates international sustainability agreements and COP delegations.' },
+                    { title: 'Sustainable Trade Policy Expert', desc: 'Analyzes green trade barriers, tariffs, and eco-labeling standards.' },
+                    { title: 'Urban Sustainability Policy Planner', desc: 'Designs policy frameworks for smart, green, and resilient cities.' },
+                    { title: 'Just Transition Strategist', desc: 'Develops policy mechanisms to protect workers during low-carbon transitions.' }
+                ]
+            }
+        };
+
+        // All combined 28 roles for the Explorer Section
+        const allExplorerRoles = [
+            ...roleProfiles.researcher.roles.map(r => ({ ...r, category: 'researcher', categoryTitle: 'Researcher' })),
+            ...roleProfiles.project_manager.roles.map(r => ({ ...r, category: 'project_manager', categoryTitle: 'Project Manager' })),
+            ...roleProfiles.investment_manager.roles.map(r => ({ ...r, category: 'investment_manager', categoryTitle: 'Investment Manager' })),
+            ...roleProfiles.policy_analyst.roles.map(r => ({ ...r, category: 'policy_analyst', categoryTitle: 'Policy Analyst' }))
+        ];
+
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let chartInstance = null;
+
+        // Start Assessment
+        function startAssessment() {
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            document.getElementById('welcome').classList.add('hidden');
+            document.getElementById('results').classList.add('hidden');
+            document.getElementById('quiz').classList.remove('hidden');
+            showQuestion();
+            window.scrollTo({ top: document.getElementById('quiz').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Render current question
+        function showQuestion() {
+            const q = questions[currentQuestionIndex];
+            document.getElementById('question-text').innerText = q.text;
+            document.getElementById('question-category').innerText = q.categoryName;
+            
+            const progress = Math.round(((currentQuestionIndex + 1) / questions.length) * 100);
+            document.getElementById('progress-text').innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+            document.getElementById('progress-percent').innerText = `${progress}% Completed`;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+
+            document.getElementById('prev-btn').disabled = (currentQuestionIndex === 0);
+        }
+
+        // Record Answer and Advance
+        function selectAnswer(score) {
+            userAnswers[currentQuestionIndex] = score;
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                calculateResults();
+            }
+        }
+
+        // Navigate Previous
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        // Calculate Scores and Display Results
+        function calculateResults() {
+            const scores = { researcher: 0, project_manager: 0, investment_manager: 0, policy_analyst: 0 };
+            
+            userAnswers.forEach((score, index) => {
+                const category = questions[index].category;
+                scores[category] += score;
+            });
+
+            // Convert scores to percentages (max 25 per category with 5 questions)
+            const percentages = {
+                researcher: Math.round((scores.researcher / 25) * 100),
+                project_manager: Math.round((scores.project_manager / 25) * 100),
+                investment_manager: Math.round((scores.investment_manager / 25) * 100),
+                policy_analyst: Math.round((scores.policy_analyst / 25) * 100)
+            };
+
+            // Find Primary Role Match
+            let primaryCat = 'researcher';
+            let maxScore = -1;
+            for (const cat in percentages) {
+                if (percentages[cat] > maxScore) {
+                    maxScore = percentages[cat];
+                    primaryCat = cat;
+                }
+            }
+
+            const profile = roleProfiles[primaryCat];
+            document.getElementById('primary-role-title').innerText = profile.title;
+            document.getElementById('primary-role-desc').innerText = profile.desc;
+            
+            const skillsList = document.getElementById('primary-role-skills');
+            skillsList.innerHTML = profile.skills.map(s => `<li>${s}</li>`).join('');
+
+            // Render Dynamic Recommended Roles Cards
+            const recContainer = document.getElementById('recommended-roles-container');
+            recContainer.innerHTML = profile.roles.slice(0, 4).map(r => `
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-gggi-500 transition-all">
+                    <h4 class="font-bold text-slate-900">${r.title}</h4>
+                    <p class="text-xs text-slate-600 mt-1">${r.desc}</p>
+                </div>
+            `).join('');
+
+            // Hide Quiz, Show Results
+            document.getElementById('quiz').classList.add('hidden');
+            document.getElementById('results').classList.remove('hidden');
+
+            renderRadarChart(percentages);
+            window.scrollTo({ top: document.getElementById('results').offsetTop - 80, behavior: 'smooth' });
+        }
+
+        // Render Radar Chart with Chart.js
+        function renderRadarChart(percentages) {
+            const ctx = document.getElementById('resultsChart').getContext('2d');
+            if (chartInstance) chartInstance.destroy();
+
+            chartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Researcher', 'Project Manager', 'Investment Manager', 'Policy Analyst'],
+                    datasets: [{
+                        label: 'Match Score %',
+                        data: [
+                            percentages.researcher,
+                            percentages.project_manager,
+                            percentages.investment_manager,
+                            percentages.policy_analyst
+                        ],
+                        backgroundColor: 'rgba(0, 191, 165, 0.25)',
+                        borderColor: '#00a896',
+                        pointBackgroundColor: '#00695c',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#00695c',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(226, 232, 240, 0.8)' },
+                            grid: { color: 'rgba(226, 232, 240, 0.8)' },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        // Reset Assessment
+        function resetAssessment() {
+            document.getElementById('results').classList.add('hidden');
+            document.getElementById('welcome').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Render Explorer Cards
+        function renderExplorerCards(category = 'all') {
+            const container = document.getElementById('explorer-cards-container');
+            const filtered = category === 'all' 
+                ? allExplorerRoles 
+                : allExplorerRoles.filter(r => r.category === category);
+
+            container.innerHTML = filtered.map(item => `
+                <div class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-gggi-500 transition-all flex flex-col justify-between space-y-3">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md ${
+                            item.category === 'researcher' ? 'bg-teal-50 text-teal-700 border border-teal-100' :
+                            item.category === 'project_manager' ? 'bg-blue-50 text-blue-700 border border-blue-100' :
+                            item.category === 'investment_manager' ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' :
+                            'bg-amber-50 text-amber-700 border border-amber-100'
+                        }">${item.categoryTitle}</span>
+                        <h3 class="text-lg font-bold text-slate-900 mt-2">${item.title}</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mt-1">${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Explorer Categories
+        function filterRoles(category) {
+            const buttons = document.querySelectorAll('.role-filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-gggi-600', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            });
+
+            event.target.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            event.target.classList.add('bg-gggi-600', 'text-white');
+
+            renderExplorerCards(category);
+        }
+
+        // Initialize Explorer on load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderExplorerCards('all');
+        });
+    </script>
+</body>
+</html>
